@@ -32,12 +32,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] {"your ip can't using our api , please contact administrator"};
-                }
-
+                
                 var re = ProfessionServer.GetProfession(proName);
 
                 return re;
@@ -58,12 +53,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] {"your ip can't using our api , please contact administrator"};
-                }
-
+                
                 var re = ProfessionServer.GetProfessionFieldList(fieldName);
 
                 return re;
@@ -84,12 +74,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] {"your ip can't using our api , please contact administrator"};
-                }
-
+                
                 var re = ProfessionServer.GetProfessionDisciplineList(disName);
 
                 return re;
@@ -110,12 +95,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] {"your ip can't using our api , please contact administrator"};
-                }
-
+                
                 var re = ProfessionServer.FieldList();
 
                 return re;
@@ -136,12 +116,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] {"your ip can't using our api , please contact administrator"};
-                }
-
+                
                 var re = ProfessionServer.DisciplineList();
 
                 return re;
@@ -162,21 +137,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                Dictionary<object, IEnumerable<object>> re;
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    re = new Dictionary<object, IEnumerable<object>>
-                    {
-                        {
-                            new {result = "wrong"},
-                            new[] {(object) "your ip can't using our api , please contact administrator"}
-                        }
-                    };
-                    return re;
-                }
-
-                re = ProfessionServer.GetProfessionList();
+                var re = ProfessionServer.GetProfessionList();
 
                 return re;
             }

@@ -95,5 +95,46 @@ namespace NeccWxApi.Servers
             }
         }
 
+        /// <summary>
+        /// 账号使用次数限制
+        /// </summary>
+        /// <param name="account">账号使用次数限制</param>
+        /// <returns></returns>
+        public static int AccountHandle(string account)
+        {
+            using (var con = new SqlConnection(SqlConString))
+            {
+
+                con.Open();
+
+                var str = "SELECT limitTimes FROM UserAccount WHERE account = '" + account + "'";
+
+                var result = new SqlCommand(str, con).ExecuteReader();
+
+                if (result.Read())
+                {
+                    var times = (int)result[0];
+
+                    if (times == 0)
+                        return 0;
+                    if (times == -1)
+                        return -1;
+
+                    var availableTimes = times - 1;
+
+                    str = "UPDATE UserAccount SET limitTimes = " + availableTimes +
+                          " WHERE account = '" + account + "'";
+
+                    new SqlCommand(str, con).ExecuteNonQuery();
+
+                    return times;
+                }
+
+                new SqlCommand(str, con).ExecuteNonQuery();
+
+
+                return 500;
+            }
+        }
     }
 }

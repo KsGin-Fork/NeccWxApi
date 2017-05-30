@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeccWxApi.Servers;
 
@@ -33,12 +34,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.GetProfessionList(localProvince);
 
                 return re;
@@ -60,12 +72,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.GetUniversityList(localProvince);
 
                 return re;
@@ -92,12 +115,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.QueryProfession(localProvince, year, classes, lscore, rscore, proName);
 
                 return re;
@@ -121,12 +155,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.QueryUniversity(localProvince, classes, uniName);
 
                 return re;
@@ -152,12 +197,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.QueryScore(localProvince, year, classes, lscore, rscore);
 
                 return re;
@@ -180,10 +236,22 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
+                }
+
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
                 }
 
                 var re = HistoryDataServer.ProfessionListByUniversity(localProvince, uniName);
@@ -208,12 +276,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.UniversityListByProfession(localProvince, proName);
 
                 return re;
@@ -236,12 +315,23 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == null)
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
                 var re = HistoryDataServer.ProfessionListByDetailUniversity(localProvince,uniName);
 
                 return re;

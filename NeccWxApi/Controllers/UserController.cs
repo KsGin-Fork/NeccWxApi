@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeccWxApi.Models;
 using NeccWxApi.Servers;
@@ -34,13 +35,19 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
-
                 var re = UserServer.Login(account, password);
+
+//                var u = UserServer.GetUser(account);
+//                HttpContext.Session.SetString("user_account" , account);
+//                HttpContext.Session.SetString("login_status", "1");
+//                HttpContext.Session.SetString("user_province" , ((UserInfo)u).province);
+                
+                //如果登陆成功  设置session
+                if (re == "login successful")
+                {
+                    HttpContext.Session.SetString("user_account" , account);
+                    HttpContext.Session.SetString("login_status", "1");
+                }
 
                 return new { msg = re };
             }
@@ -64,11 +71,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
                 if (UserServer.AccountIsExist(account).Equals("account is exists"))
                 {
                     return new { msg = "account is exists" };
@@ -102,12 +104,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
-
                 if (user == null)
                 {
                     return new { msg = "bad request" };
@@ -150,11 +146,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
                 var re = UserServer.AccountIsExist(account);
                 return new { msg = re };
             }
@@ -175,11 +166,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
                 var re = UserServer.ActiveCodeState(activeCode);
                 return new { msg = re };
             }
@@ -201,14 +187,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new
-                    {
-                        msg = "your ip can't using our api , please contact administrator"
-                    };
-                }
                 if (!UserServer.AccountIsExist(account).Equals("account is exists"))
                 {
                     return new
@@ -244,16 +222,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new
-                    {
-                        msg = "your ip can't using our api , please contact administrator"
-                    };
-                }
-
                 if (user == null)
                 {
                     return new { msg = "request error" };
@@ -294,11 +262,6 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new { msg = "your ip can't using our api , please contact administrator" };
-                }
                 if (!UserServer.AccountIsExist(account).Equals("account is exists"))
                 {
                     return new { msg = "account not found" };

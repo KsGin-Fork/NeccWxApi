@@ -34,12 +34,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = UniversityServer.GetUniversity(uniName);
 
                 return re;
@@ -60,12 +55,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = UniversityServer.Get985UniversityList();
 
                 return re;
@@ -86,12 +76,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = UniversityServer.Get211UniversityList();
 
                 return re;
@@ -112,12 +97,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = UniversityServer.UniversityIs985Or211(uniName);
 
                 return re;
@@ -139,12 +119,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = UniversityServer.GetUniversityList(listCount);
 
                 return re;

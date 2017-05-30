@@ -523,6 +523,36 @@
             用户密码
             </summary>
         </member>
+        <member name="T:NeccWxApi.Models.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInfo.account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInfo.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInfo.phoneNumber">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInfo.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInfo.userType">
+            <summary>
+            类型
+            </summary>
+        </member>
         <member name="T:NeccWxApi.Program">
             <summary>
             启动类
@@ -759,6 +789,13 @@
             对用户IP进行处理
             </summary>
             <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeccWxApi.Servers.Server.AccountHandle(System.String)">
+            <summary>
+            账号使用次数限制
+            </summary>
+            <param name="account">账号使用次数限制</param>
             <returns></returns>
         </member>
         <member name="T:NeccWxApi.Servers.UniversityServer">

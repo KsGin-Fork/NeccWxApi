@@ -761,6 +761,13 @@
             <param name="ip"></param>
             <returns></returns>
         </member>
+        <member name="M:NeccWxApi.Servers.Server.AccountHandle(System.String)">
+            <summary>
+            账号使用次数限制
+            </summary>
+            <param name="account">账号使用次数限制</param>
+            <returns></returns>
+        </member>
         <member name="T:NeccWxApi.Servers.UniversityServer">
             <summary>
             学校数据Server

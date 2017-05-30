@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using NeccWxApi.Models;
 
 namespace NeccWxApi.Servers
 {
@@ -186,9 +187,9 @@ namespace NeccWxApi.Servers
                 {
                     re = "key is not found";
                 }
-
                 return re;
             }
         }
     }
+
 }

@@ -19,9 +19,9 @@ E:/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.csprojRes
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/bin/release/netcoreapp1.1/netcoreapp1.1/NeccWxApi.runtimeconfig.dev.json
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/bin/release/netcoreapp1.1/netcoreapp1.1/WxNceeAPI.xml
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/bin/release/netcoreapp1.1/netcoreapp1.1/NeccWxApi.dll
-/Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/bin/release/netcoreapp1.1/netcoreapp1.1/NeccWxApi.pdb
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.csprojResolveAssemblyReference.cache
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.csproj.CoreCompileInputs.cache
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.AssemblyInfo.cs
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.dll
 /Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/obj/Debug/netcoreapp1.1/NeccWxApi.pdb
+/Users/ksgin/Documents/Code/DotNetProject/NeccWxApi/NeccWxApi/bin/release/netcoreapp1.1/netcoreapp1.1//NeccWxApi.pdb

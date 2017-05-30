@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeccWxApi.Models;
 using NeccWxApi.Servers;
@@ -36,12 +37,24 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
+                var account = HttpContext.Session.GetString("user_account");
+
+                if (account == "")
                 {
-                    return new[] { "your ip can't using our api , please contact administrator" };
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
                 }
 
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
+                
                 var re = IntelligentServer.IntelligentRecommendation(score , pnum , localProvince , classes , year );
 
                 return re;

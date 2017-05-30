@@ -32,12 +32,7 @@ namespace NeccWxApi.Controllers
         {           
             try
             {
-                var addr = Server.GetUserIp(Request.HttpContext);
-                if (Server.IPHandle(addr) == 0)
-                {
-                    return new[] { "your ip can't using our api , please contact administrator" };
-                }
-
+                
                 var re = AdmitLineServer.GetAllAdmitLine(localProvince);
 
                 return re;

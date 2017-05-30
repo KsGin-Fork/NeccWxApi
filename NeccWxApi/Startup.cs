@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -45,8 +46,17 @@ namespace NeccWxApi
         {
             // Add framework services.
             services.AddMvc();
-
-            //doc
+            
+            
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+            // session 设置
+            services.AddSession(options =>
+            {
+                // 设置 Session 过期时间
+                options.IdleTimeout = TimeSpan.FromDays(90);
+                //options.CookieHttpOnly = true;
+            });
 
             // Add our repository type
             services.AddSingleton<HttpGetAttribute, HttpGetAttribute>();
@@ -86,8 +96,13 @@ namespace NeccWxApi
         /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+                     
+            //使用Session
+            app.UseSession();
+            
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            
             app.UseMvc();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
@@ -99,7 +114,7 @@ namespace NeccWxApi
             Servers.Server.SqlConString = Configuration.GetConnectionString("WxNceeSqlString");
 
             app.UseCors("CorsSample");
-
+            
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 

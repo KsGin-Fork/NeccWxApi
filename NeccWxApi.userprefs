@@ -1,5 +1,9 @@
 ﻿<Properties StartupConfiguration="{25AC486E-502F-4999-95CC-398F0F04AC83}|Default">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="NeccWxApi/Program.cs">
+    <Files>
+      <File FileName="NeccWxApi/Program.cs" Line="42" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.NeccWxApi PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
