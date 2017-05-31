@@ -39,7 +39,7 @@ namespace NeccWxApi.Controllers
             {
                 var account = HttpContext.Session.GetString("user_account");
 
-                if (account == "")
+                if (account == null)
                 {
                     return new[]
                     {
