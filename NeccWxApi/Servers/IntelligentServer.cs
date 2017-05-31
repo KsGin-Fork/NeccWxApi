@@ -17,15 +17,16 @@ namespace NeccWxApi.Servers
         /// <param name="localProvince">省份</param>
         /// <param name="classes">科类</param>
         /// <param name="year">年份</param>
-        public static IEnumerable<object> IntelligentRecommendation(decimal score , int pnum , string localProvince , string classes , int year)
+        public static IEnumerable<object> IntelligentRecommendation(decimal score, int pnum, string localProvince,
+            string classes, int year)
         {
-            using(var con = new SqlConnection(Server.SqlConString))
+            using (var con = new SqlConnection(Server.SqlConString))
             {
                 con.Open();
                 var re = new List<object>();
-                var sqlCom = new SqlCommand("sp_intellij" , con) { CommandType = System.Data.CommandType.StoredProcedure };
+                var sqlCom = new SqlCommand("sp_intellij", con) {CommandType = System.Data.CommandType.StoredProcedure};
 
-                sqlCom.Parameters.Add("@nScore" , System.Data.SqlDbType.Decimal);
+                sqlCom.Parameters.Add("@nScore", System.Data.SqlDbType.Decimal);
                 sqlCom.Parameters.Add("@npnum", System.Data.SqlDbType.Int);
                 sqlCom.Parameters.Add("@province", System.Data.SqlDbType.NVarChar);
                 sqlCom.Parameters.Add("@classes", System.Data.SqlDbType.NVarChar);
@@ -45,18 +46,15 @@ namespace NeccWxApi.Servers
                 while (reader.Read())
                 {
                     re.Add(
-                        new {
-                        uID = (int)reader[0],
-                        uName = (string)reader[1],
-                        eduBackg = (string)reader[2],
-                        uMax = (int)reader[3],
-                        uMin = (int)reader[4],
-                        uAve = (decimal)reader[5],
-                        uMinP = (int)reader[6],
-                        uMaxP = (int)reader[7],
-                        uBatch = (string)reader[8],
-                        uGap = (decimal)reader[9]
-                    }
+                        new
+                        {
+                            uName = (string) reader[0],
+                            eduBackg = (string) reader[1],
+                            uMin = (int) reader[2],
+                            uAve = (decimal) reader[3],
+                            uBatch = (string) reader[4],
+                            uSubject = (string) reader[5]
+                        }
                     );
                 }
 

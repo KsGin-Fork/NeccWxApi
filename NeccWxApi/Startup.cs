@@ -55,7 +55,7 @@ namespace NeccWxApi
             {
                 // 设置 Session 过期时间
                 options.IdleTimeout = TimeSpan.FromDays(90);
-                //options.CookieHttpOnly = true;
+                options.CookieHttpOnly = true;
             });
 
             // Add our repository type
@@ -67,7 +67,7 @@ namespace NeccWxApi
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "NeccWxApi", Version = "v1.0" });
+                c.SwaggerDoc("v1.1", new Info { Title = "NeccWxApi", Version = "v1.1" });
                 c.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
                     "WxNceeAPI.XML"));
             });
@@ -121,7 +121,7 @@ namespace NeccWxApi
             // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NeccWxApi");
+                c.SwaggerEndpoint("/swagger/v1.1/swagger.json", "NeccWxApi");
             });
 
         }
