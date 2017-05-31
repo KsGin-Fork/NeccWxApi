@@ -36,11 +36,6 @@ namespace NeccWxApi.Controllers
             try
             {
                 var re = UserServer.Login(account, password);
-
-//                var u = UserServer.GetUser(account);
-//                HttpContext.Session.SetString("user_account" , account);
-//                HttpContext.Session.SetString("login_status", "1");
-//                HttpContext.Session.SetString("user_province" , ((UserInfo)u).province);
                 
                 //如果登陆成功  设置session
                 if (re == "login successful")
@@ -57,6 +52,35 @@ namespace NeccWxApi.Controllers
             }
         }
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="um">用户</param>
+        /// <returns>登录结果</returns>
+        [EnableCors("CorsSample")]
+        [HttpPost("Login")]
+        public object Login([FromBody]LoginModel um)
+        {
+            try
+            {
+                var re = UserServer.Login(um.Account, um.Password);
+                
+                //如果登陆成功  设置session
+                if (re == "login successful")
+                {
+                    HttpContext.Session.SetString("user_account" , um.Account);
+                    HttpContext.Session.SetString("login_status", "1");
+                }
+
+                return new { msg = re };
+            }
+            catch (Exception e)
+            {
+                return new { msg = e.Message };
+            }
+        }
+
+        
         /// <summary>
         /// 注册
         /// </summary>

@@ -23,4 +23,20 @@
         public string Password { get; set; }
     }
 
+
+    /// <summary>
+    /// 登录模型
+    /// </summary>
+    public class LoginModel
+    {
+        /// <summary>
+        /// 账号
+        /// </summary>
+        public string Account { get; set; }
+        
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+    }
 }

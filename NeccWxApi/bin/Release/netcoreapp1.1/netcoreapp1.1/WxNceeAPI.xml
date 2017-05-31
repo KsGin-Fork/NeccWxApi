@@ -305,6 +305,13 @@
             <param name="password">密码</param>
             <returns>登录结果</returns>
         </member>
+        <member name="M:NeccWxApi.Controllers.UserController.Login(NeccWxApi.Models.LoginModel)">
+            <summary>
+            登录
+            </summary>
+            <param name="um">用户</param>
+            <returns>登录结果</returns>
+        </member>
         <member name="M:NeccWxApi.Controllers.UserController.Register(System.String,System.String,System.String,System.String)">
             <summary>
             注册
@@ -521,6 +528,21 @@
         <member name="P:NeccWxApi.Models.User.Password">
             <summary>
             用户密码
+            </summary>
+        </member>
+        <member name="T:NeccWxApi.Models.LoginModel">
+            <summary>
+            登录模型
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.LoginModel.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.LoginModel.Password">
+            <summary>
+            密码
             </summary>
         </member>
         <member name="T:NeccWxApi.Program">
