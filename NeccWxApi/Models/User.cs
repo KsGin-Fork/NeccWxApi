@@ -39,4 +39,31 @@
         /// </summary>
         public string Password { get; set; }
     }
+
+    /// <summary>
+    /// 用户信息模型
+    /// </summary>
+    public class UserInformation
+    {
+        /// <summary>
+        /// 账号
+        /// </summary>
+        public string account { get; set; }
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string password { get; set; }
+        /// <summary>
+        /// 电话
+        /// </summary>
+        public string phoneNumber { get; set; }
+        /// <summary>
+        /// 省份（生源地）
+        /// </summary>
+        public string province { get; set; }
+        /// <summary>
+        /// 用户类型
+        /// </summary>
+        public string userType { get; set; }
+    }
 }

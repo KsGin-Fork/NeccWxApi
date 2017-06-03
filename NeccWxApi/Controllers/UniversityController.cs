@@ -13,16 +13,6 @@ namespace NeccWxApi.Controllers
     public class UniversityController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// 查询院校信息
         /// </summary>
         /// <param name="uniName">学校名称</param>

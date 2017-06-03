@@ -11,15 +11,15 @@ namespace NeccWxApi.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// 主页界面
+        /// 主页
         /// </summary>
         /// <returns></returns>
+        [EnableCors("CorsSample")]
         [HttpGet]
-        public IActionResult Get()
+        public ViewResult Get()
         {
             return View();
         }
-
         /// <summary>
         /// 获得用户IP
         /// </summary>

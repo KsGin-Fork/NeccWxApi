@@ -14,32 +14,23 @@ namespace NeccWxApi.Controllers
     public class IntelligentController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-        /// <summary>
         /// 智能推荐
         /// </summary>
         /// <returns>推荐的学校列表</returns>
         /// <param name="score">分数</param>
         /// <param name="pnum">位次</param>
-        /// <param name="localProvince">省份</param>
         /// <param name="classes">科类</param>
         /// <param name="year">年份</param>
-        [HttpGet("IntelligentRecommendation&lp={localProvince}&s={score}&p={pnum}&c={classes}&y={year}")]
+        [HttpGet("IntelligentRecommendation&s={score}&p={pnum}&c={classes}&y={year}")]
         [EnableCors("CorsSample")]
-        public IEnumerable<object> IntelligentRecommendation(decimal score , int pnum , string localProvince , string classes , int year)
+        public IEnumerable<object> IntelligentRecommendation(decimal score , int pnum , string classes , int year)
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
+                var localProvince = HttpContext.Session.GetString("user_Province");
 
-                if (account == null)
+                if (account == null || localProvince == null)
                 {
                     return new[]
                     {

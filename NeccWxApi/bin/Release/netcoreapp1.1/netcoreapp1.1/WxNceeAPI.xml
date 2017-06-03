@@ -9,17 +9,10 @@
             获得分数线API
             </summary>
         </member>
-        <member name="M:NeccWxApi.Controllers.AdmitLineController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeccWxApi.Controllers.AdmitLineController.GetAllAdmitLine(System.String)">
+        <member name="M:NeccWxApi.Controllers.AdmitLineController.GetAllAdmitLine">
             <summary>
             获得分数线信息
             </summary>
-            <param name="localProvince">生源地</param>
             <returns>分数线</returns>
         </member>
         <member name="T:NeccWxApi.Controllers.HistoryDataController">
@@ -27,31 +20,22 @@
             历史数据API
             </summary>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.GetProfessionList(System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.GetProfessionList">
             <summary>
             全部专业列表
             </summary>
-            <param name="localProvince">生源地</param>
             <returns>专业列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.GetUniversityList(System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.GetUniversityList">
             <summary>
             全部院校列表
             </summary>
-            <param name="localProvince">生源地</param>
             <returns>学校列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryProfession(System.String,System.Int32,System.String,System.Int32,System.Int32,System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryProfession(System.Int32,System.String,System.Int32,System.Int32,System.String)">
             <summary>
             专业查询
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="year">年份</param>
             <param name="classes">类别</param>
             <param name="lscore">分数下限</param>
@@ -59,47 +43,42 @@
             <param name="proName">专业名称</param>
             <returns>专业列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryUniversity(System.String,System.String,System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryUniversity(System.String,System.String)">
             <summary>
             院校查询
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="classes">类别</param>
             <param name="uniName">院校名称</param>
             <returns>院校列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryScore(System.String,System.Int32,System.String,System.Int32,System.Int32)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.QueryScore(System.Int32,System.String,System.Int32,System.Int32)">
             <summary>
             分数查询
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="year">年份</param>
             <param name="classes">类别</param>
             <param name="lscore">分数下限</param>
             <param name="rscore">分数上限</param>
             <returns>学校列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.ProfessionListByUniversity(System.String,System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.ProfessionListByUniversity(System.String)">
             <summary>
             学校开设专业列表
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="uniName">学校名称</param>
             <returns>专业列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.UniversityListByProfession(System.String,System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.UniversityListByProfession(System.String)">
             <summary>
             查询开设了某专业的学校
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="proName">专业名称</param>
             <returns>学校列表</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.HistoryDataController.ProfessionListByDetailUniversity(System.String,System.String)">
+        <member name="M:NeccWxApi.Controllers.HistoryDataController.ProfessionListByDetailUniversity(System.String)">
             <summary>
             获得学校的具体专业信息
             </summary>
-            <param name="localProvince">生源地</param>
             <param name="uniName">学校名</param>
             <returns></returns>
         </member>
@@ -110,7 +89,7 @@
         </member>
         <member name="M:NeccWxApi.Controllers.HomeController.Get">
             <summary>
-            主页界面
+            主页
             </summary>
             <returns></returns>
         </member>
@@ -125,20 +104,13 @@
             智能查询API
             </summary>
         </member>
-        <member name="M:NeccWxApi.Controllers.IntelligentController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeccWxApi.Controllers.IntelligentController.IntelligentRecommendation(System.Decimal,System.Int32,System.String,System.String,System.Int32)">
+        <member name="M:NeccWxApi.Controllers.IntelligentController.IntelligentRecommendation(System.Decimal,System.Int32,System.String,System.Int32)">
             <summary>
             智能推荐
             </summary>
             <returns>推荐的学校列表</returns>
             <param name="score">分数</param>
             <param name="pnum">位次</param>
-            <param name="localProvince">省份</param>
             <param name="classes">科类</param>
             <param name="year">年份</param>
         </member>
@@ -147,34 +119,25 @@
             新历史数据查询API
             </summary>
         </member>
-        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryUniversity(NeccWxApi.Models.QUniNameParModel,System.String)">
+        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryUniversity(NeccWxApi.Models.QUniNameParModel)">
             <summary>
             精确查询
             </summary>
             <param name="qunpm">查询参数</param>
-            <param name="localProvince">生源地</param>
             <returns></returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryProfession(NeccWxApi.Models.QProNameParModel,System.String)">
+        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryProfession(NeccWxApi.Models.QProNameParModel)">
             <summary>
             精确查询专业
             </summary>
             <param name="qpnpm">查询参数</param>
-            <param name="localProvince">生源地</param>
             <returns>查询结果</returns>
         </member>
-        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryScore(NeccWxApi.Models.QScoreParModel,System.String)">
+        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryScore(NeccWxApi.Models.QScoreParModel)">
             <summary>
             分数查询
             </summary>
             <param name="qspm">查询参数头</param>
-            <param name="localProvince">生源地</param>
             <returns>查询结果</returns>
         </member>
         <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.AllUniLocal">
@@ -199,12 +162,6 @@
             <summary>
             专业查询API
             </summary>
-        </member>
-        <member name="M:NeccWxApi.Controllers.ProfessionController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:NeccWxApi.Controllers.ProfessionController.GetProfession(System.String)">
             <summary>
@@ -247,12 +204,6 @@
             院校API
             </summary>
         </member>
-        <member name="M:NeccWxApi.Controllers.UniversityController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:NeccWxApi.Controllers.UniversityController.GetUniversity(System.String)">
              <summary>
              查询院校信息
@@ -290,12 +241,6 @@
             <summary>
             用户操作API
             </summary>
-        </member>
-        <member name="M:NeccWxApi.Controllers.UserController.Get">
-            <summary>
-            界面
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:NeccWxApi.Controllers.UserController.Login(System.String,System.String)">
             <summary>
@@ -543,6 +488,36 @@
         <member name="P:NeccWxApi.Models.LoginModel.Password">
             <summary>
             密码
+            </summary>
+        </member>
+        <member name="T:NeccWxApi.Models.UserInformation">
+            <summary>
+            用户信息模型
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInformation.account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInformation.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInformation.phoneNumber">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInformation.province">
+            <summary>
+            省份（生源地）
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.UserInformation.userType">
+            <summary>
+            用户类型
             </summary>
         </member>
         <member name="T:NeccWxApi.Program">

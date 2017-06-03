@@ -160,7 +160,7 @@ namespace NeccWxApi.Servers
         /// </summary>
         /// <param name="account">用户账号</param>
         /// <returns>用户信息</returns>
-        public static object GetUser(string account)
+        public static UserInformation GetUser(string account)
         {
             using (var con = new SqlConnection(Server.SqlConString))
             {
@@ -174,7 +174,7 @@ namespace NeccWxApi.Servers
                 var reader = sc.ExecuteReader();
                 if (reader.Read())
                 {
-                    re = new
+                    re = new UserInformation
                     {
                         account = (string)reader[0],
                         password = (string)reader[1],
@@ -187,7 +187,7 @@ namespace NeccWxApi.Servers
                 {
                     re = "key is not found";
                 }
-                return re;
+                return (UserInformation)re;
             }
         }
     }

@@ -13,16 +13,6 @@ namespace NeccWxApi.Controllers
     public class ProfessionController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// 查询专业信息
         /// </summary>
         /// <returns>专业信息</returns>

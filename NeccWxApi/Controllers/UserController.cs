@@ -14,16 +14,6 @@ namespace NeccWxApi.Controllers
     public class UserController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// 登录
         /// </summary>
         /// <param name="account">账号</param>
@@ -38,11 +28,14 @@ namespace NeccWxApi.Controllers
                 var re = UserServer.Login(account, password);
                 
                 //如果登陆成功  设置session
-                if (re == "login successful")
-                {
-                    HttpContext.Session.SetString("user_account" , account);
-                    HttpContext.Session.SetString("login_status", "1");
-                }
+                if (re != "login successful") return new {msg = re};
+
+                var user = UserServer.GetUser(account);
+                HttpContext.Session.SetString("user_Account" , account);
+                HttpContext.Session.SetString("user_Password" , user.password);
+                HttpContext.Session.SetString("user_Type", user.userType);
+                HttpContext.Session.SetString("user_Province" , user.province);
+                HttpContext.Session.SetString("user_phoneNumber" , user.phoneNumber);
 
                 return new { msg = re };
             }
@@ -64,13 +57,14 @@ namespace NeccWxApi.Controllers
             try
             {
                 var re = UserServer.Login(um.Account, um.Password);
-                
+
                 //如果登陆成功  设置session
-                if (re == "login successful")
-                {
-                    HttpContext.Session.SetString("user_account" , um.Account);
-                    HttpContext.Session.SetString("login_status", "1");
-                }
+                var user = UserServer.GetUser(um.Account);
+                HttpContext.Session.SetString("user_Account", um.Account);
+                HttpContext.Session.SetString("user_Password", user.password);
+                HttpContext.Session.SetString("user_Type", user.userType);
+                HttpContext.Session.SetString("user_Province", user.province);
+                HttpContext.Session.SetString("user_phoneNumber", user.phoneNumber);
 
                 return new { msg = re };
             }

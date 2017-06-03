@@ -15,32 +15,21 @@ namespace NeccWxApi.Controllers
     public class NewHistoryDataQueryController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-
-
-        /// <summary>
         /// 精确查询
         /// </summary>
         /// <param name="qunpm">查询参数</param>
-        /// <param name="localProvince">生源地</param>
         /// <returns></returns>
-        [HttpPatch("QueryUniversity&lp={localProvince}")]
-        [HttpPost("QueryUniversity&lp={localProvince}")]
+        [HttpPatch("QueryUniversity")]
+        [HttpPost("QueryUniversity")]
         [EnableCors("CorsSample")]
-        public IEnumerable<object> QueryUniversity([FromBody]QUniNameParModel qunpm , string localProvince)
+        public IEnumerable<object> QueryUniversity([FromBody]QUniNameParModel qunpm)
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
+                var localProvince = HttpContext.Session.GetString("user_Province");
 
-                if (account == null)
+                if (account == null || localProvince == null)
                 {
                     return new[]
                     {
@@ -70,18 +59,18 @@ namespace NeccWxApi.Controllers
         /// 精确查询专业
         /// </summary>
         /// <param name="qpnpm">查询参数</param>
-        /// <param name="localProvince">生源地</param>
         /// <returns>查询结果</returns>
-        [HttpPatch("QueryProfession&lp={localProvince}")]
-        [HttpPost("QueryProfession&lp={localProvince}")]
+        [HttpPatch("QueryProfession")]
+        [HttpPost("QueryProfession")]
         [EnableCors("CorsSample")]
-        public IEnumerable<object> QueryProfession([FromBody] QProNameParModel qpnpm, string localProvince)
+        public IEnumerable<object> QueryProfession([FromBody] QProNameParModel qpnpm)
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
+                var localProvince = HttpContext.Session.GetString("user_Province");
 
-                if (account == null)
+                if (account == null || localProvince == null)
                 {
                     return new[]
                     {
@@ -111,18 +100,18 @@ namespace NeccWxApi.Controllers
         /// 分数查询
         /// </summary>
         /// <param name="qspm">查询参数头</param>
-        /// <param name="localProvince">生源地</param>
         /// <returns>查询结果</returns>
-        [HttpPatch("QueryScore&lp={localProvince}")]
-        [HttpPost("QueryScore&lp={localProvince}")]
+        [HttpPatch("QueryScore")]
+        [HttpPost("QueryScore")]
         [EnableCors("CorsSample")]
-        public IEnumerable<object> QueryScore([FromBody] QScoreParModel qspm, string localProvince)
+        public IEnumerable<object> QueryScore([FromBody] QScoreParModel qspm)
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
+                var localProvince = HttpContext.Session.GetString("user_Province");
 
-                if (account == null)
+                if (account == null || localProvince == null)
                 {
                     return new[]
                     {
@@ -159,7 +148,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
 
                 if (account == null)
                 {
@@ -197,7 +186,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
 
                 if (account == null)
                 {
@@ -235,7 +224,7 @@ namespace NeccWxApi.Controllers
         {
             try
             {
-                var account = HttpContext.Session.GetString("user_account");
+                var account = HttpContext.Session.GetString("user_Account");
 
                 if (account == null)
                 {

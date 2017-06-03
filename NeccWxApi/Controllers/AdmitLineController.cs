@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeccWxApi.Servers;
 
@@ -12,27 +13,25 @@ namespace NeccWxApi.Controllers
     public class AdmitLineController : Controller
     {
         /// <summary>
-        /// 界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public ViewResult Get()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// 获得分数线信息
         /// </summary>
-        /// <param name="localProvince">生源地</param>
         /// <returns>分数线</returns>
-        [HttpGet("GetAllAdmitLine&lp={localProvince}")]
+        [HttpGet("GetAllAdmitLine")]
         [EnableCors("CorsSample")]
-        public object GetAllAdmitLine(string localProvince)
+        public object GetAllAdmitLine()
         {           
             try
             {
-                
+                var localProvince = HttpContext.Session.GetString("user_Province");
+
+                if (localProvince == null)
+                {
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
+                }
+
                 var re = AdmitLineServer.GetAllAdmitLine(localProvince);
 
                 return re;
