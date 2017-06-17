@@ -24,3 +24,4 @@ E:\DotNetProject\NeccWxApi\NeccWxApi\bin\release\netcoreapp1.1\netcoreapp1.1\Nec
 E:\DotNetProject\NeccWxApi\NeccWxApi\obj\Debug\netcoreapp1.1\NeccWxApi.AssemblyInfo.cs
 E:\DotNetProject\NeccWxApi\NeccWxApi\obj\Debug\netcoreapp1.1\NeccWxApi.dll
 E:\DotNetProject\NeccWxApi\NeccWxApi\obj\Debug\netcoreapp1.1\NeccWxApi.pdb
+E:\DotNetProject\NeccWxApi\NeccWxApi\obj\Debug\netcoreapp1.1\NeccWxApi.csprojResolveAssemblyReference.cache

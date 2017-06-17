@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace NeccWxApi.Servers
@@ -48,12 +49,12 @@ namespace NeccWxApi.Servers
                     re.Add(
                         new
                         {
-                            uName = (string) reader[0],
-                            eduBackg = (string) reader[1],
-                            uMin = (int) reader[2],
-                            uAve = (decimal) reader[3],
-                            uBatch = (string) reader[4],
-                            uSubject = (string) reader[5]
+                            uName = (string)reader[0],
+                            eduBackg = (string)reader[1],
+                            uMin = reader[2] == DBNull.Value ? -1 : (int)reader[2],
+                            uAve = reader[3] == DBNull.Value ? decimal.MinusOne : (decimal)reader[3],
+                            uBatch = (string)reader[4],
+                            uSubject = (string)reader[5]
                         }
                     );
                 }

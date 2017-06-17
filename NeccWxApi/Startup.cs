@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
@@ -46,16 +47,26 @@ namespace NeccWxApi
         {
             // Add framework services.
             services.AddMvc();
-            
-            
+
+
             // Adds a default in-memory implementation of IDistributedCache.
-            services.AddDistributedMemoryCache();
+            //services.AddDistributedMemoryCache();
+            services.AddDistributedSqlServerCache(options =>
+            {
+                options.ConnectionString = Configuration.GetConnectionString("WxNceeSqlString");
+                options.SchemaName = "dbo";
+                options.TableName = "session";
+                options.SystemClock = new SystemClock();
+            });
             // session 设置
             services.AddSession(options =>
             {
                 // 设置 Session 过期时间
-                options.IdleTimeout = TimeSpan.FromDays(90);
-                options.CookieHttpOnly = true;
+                options.CookieName = ".WxGaokao.Session";
+                options.IdleTimeout = TimeSpan.FromDays(14);
+                options.CookieHttpOnly = false;
+                options.CookieDomain = ".wxgaokao.net";
+                options.CookiePath = "/";
             });
 
             // Add our repository type
@@ -63,6 +74,7 @@ namespace NeccWxApi
             services.AddSingleton<HttpPutAttribute, HttpPutAttribute>();
             services.AddSingleton<HttpDeleteAttribute, HttpDeleteAttribute>();
             services.AddSingleton<HttpPostAttribute, HttpPostAttribute>();
+            services.AddSingleton<HttpPatchAttribute, HttpPatchAttribute>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

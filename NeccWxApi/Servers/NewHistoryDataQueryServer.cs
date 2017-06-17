@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using NeccWxApi.Models;
 
@@ -73,15 +74,15 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        uName = (string) reader[0],
-                        uAddress = (string) reader[1],
-                        uType = (string) reader[2],
-                        uBatch = (string) reader[3],
-                        year = (int) reader[4],
-                        uMin = (int) reader[5],
-                        uAve = (decimal) reader[6],
-                        uGap = (decimal) reader[7],
-                        uNum = (int) reader[8]
+                        uName = (string)reader[0],
+                        uAddress = (string)reader[1],
+                        uType = (string)reader[2],
+                        uBatch = (string)reader[3],
+                        year = reader[4] == DBNull.Value ? -1 : (int)reader[4],
+                        uMin = reader[5] == DBNull.Value ? -1 : (int)reader[5],
+                        uAve = reader[6] == DBNull.Value ? decimal.MinusOne : (decimal)reader[6],
+                        uGap = reader[7] == DBNull.Value ? decimal.MinusOne : (decimal)reader[7],
+                        uNum = reader[8] == DBNull.Value ? -1 : (int)reader[8]
                     });
                 }
 
@@ -147,14 +148,14 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        pName = (string) reader[0],
-                        uName = (string) reader[1],
-                        uAddress = (string) reader[2],
-                        pBatch = (string) reader[3],
-                        pMin = (int) reader[4],
-                        pAve = (decimal) reader[5],
-                        pMinP = (int) reader[6],
-                        pNum = (int) reader[7]
+                        pName = (string)reader[0],
+                        uName = (string)reader[1],
+                        uAddress = (string)reader[2],
+                        pBatch = (string)reader[3],
+                        pMin = (int)reader[4],
+                        pAve = reader[5] == DBNull.Value ? decimal.MinusOne : (decimal)reader[5],
+                        pMinP = reader[6] == DBNull.Value ? -1 : (int)reader[6],
+                        pNum = reader[7] == DBNull.Value ? -1 : (int)reader[7]
                     });
                 }
 
@@ -220,13 +221,13 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        uName = (string) reader[0],
-                        uAddress = (string) reader[1],
-                        uBatch = (string) reader[2],
-                        uMin = (int) reader[3],
-                        uAve = (decimal) reader[4],
-                        uMinP = (int) reader[5],
-                        uNum = (int) reader[6]
+                        uName = (string)reader[0],
+                        uAddress = (string)reader[1],
+                        uBatch = (string)reader[2],
+                        uMin = reader[3] == DBNull.Value ? -1 : (int)reader[3],
+                        uAve = reader[4] == DBNull.Value ? decimal.MinusOne : (decimal)reader[4],
+                        uMinP = reader[5] == DBNull.Value ? -1 : (int)reader[5],
+                        uNum = reader[6] == DBNull.Value ? -1 : (int)reader[6]
                     });
                 }
 
