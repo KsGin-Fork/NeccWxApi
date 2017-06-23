@@ -339,7 +339,7 @@ namespace NeccWxApi.Servers
                         pMin = reader[4] == DBNull.Value ? -1 : (int)reader[4],
                         pMinP = reader[5] == DBNull.Value ? -1 : (int)reader[5],
                         pNum = reader[6] == DBNull.Value ? -1 : (int)reader[6],
-                        pClasses = reader[7] == DBNull.Value ? -1 : (int)reader[7],
+                        pClasses = (string)reader[7],
                     });
                 }
 

@@ -31,7 +31,6 @@ namespace NeccWxApi.Servers
                         }
                     };
                 }
-
                 string sqlUniBatch = " ", sqlUniType = " ", sqlUniLocal = " ", sqlYear = " ";
                 if (qunpm.uniBatch != null)
                 {
