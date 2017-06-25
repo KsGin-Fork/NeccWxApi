@@ -308,9 +308,7 @@ namespace NeccWxApi.Servers
             {
                 new {batch = "本科一批"},
                 new {batch = "本科二批"},
-                new {batch = "本科提前批"},
                 new {batch = "本科三批"},
-                new {batch = "专科提前批"},
                 new {batch = "高职高专批"}
             };
         }
