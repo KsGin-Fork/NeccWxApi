@@ -20,7 +20,7 @@ namespace NeccWxApi.Servers
                 var re = new List<object>();
 
                 var sqlStr = "Select year , classes , underGraduateF , underGraduateS , underGraduateT , Specialty from AdmitLine " +
-                    "Where province = '" + localProvince + "'";
+                    "Where province = '" + localProvince + "' Order By year DESC";
 
                 var sc = new SqlCommand(sqlStr, con);
 

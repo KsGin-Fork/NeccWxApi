@@ -137,6 +137,46 @@ namespace NeccWxApi.Controllers
             }
         }
 
+        /// <summary>
+        /// 位次查询
+        /// </summary>
+        /// <param name="qppm">查询参数头</param>
+        /// <returns>查询结果</returns>
+        [HttpPatch("QueryPNum")]
+        [HttpPost("QueryPNum")]
+        [EnableCors("CorsSample")]
+        public IEnumerable<object> QueryPNum([FromBody] QPNumParModel qppm)
+        {
+            try
+            {
+                var account = HttpContext.Session.GetString("user_Account");
+                var localProvince = HttpContext.Session.GetString("user_Province");
+
+                if (account == null || localProvince == null)
+                {
+                    return new[]
+                    {
+                        new {msg = "not login"}
+                    };
+                }
+
+                if (Server.AccountHandle(account) == 0)
+                {
+                    return new[]
+                    {
+                        new {msg = "times exceeded"}
+                    };
+                }
+
+                var re = NewHistoryDataQueryServer.QueryPNum(qppm , localProvince);
+
+                return re;
+            }
+            catch (Exception e)
+            {
+                return new[] { e.Message };
+            }
+        }
 
         /// <summary>
         /// 所有的院校所在地

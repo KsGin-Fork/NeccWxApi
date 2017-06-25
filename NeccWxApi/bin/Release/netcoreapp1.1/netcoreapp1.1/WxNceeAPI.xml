@@ -140,6 +140,13 @@
             <param name="qspm">查询参数头</param>
             <returns>查询结果</returns>
         </member>
+        <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.QueryPNum(NeccWxApi.Models.QPNumParModel)">
+            <summary>
+            位次查询
+            </summary>
+            <param name="qspm">查询参数头</param>
+            <returns>查询结果</returns>
+        </member>
         <member name="M:NeccWxApi.Controllers.NewHistoryDataQueryController.AllUniLocal">
             <summary>
             所有的院校所在地
@@ -415,6 +422,41 @@
             专业批次
             </summary>
         </member>
+        <member name="T:NeccWxApi.Models.QPNumParModel">
+            <summary>
+            位次查询模型
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.classes">
+            <summary>
+            科类
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.year">
+            <summary>
+            年份
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.lPNum">
+            <summary>
+            位次下限
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.rPNum">
+            <summary>
+            位次上限
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.uniLocal">
+            <summary>
+            学校所在地
+            </summary>
+        </member>
+        <member name="P:NeccWxApi.Models.QPNumParModel.batch">
+            <summary>
+            专业批次
+            </summary>
+        </member>
         <member name="T:NeccWxApi.Models.QUniNameParModel">
             <summary>
             校名精确查询模型
@@ -679,6 +721,14 @@
             所有的批次
             </summary>
             <returns>所有的批次</returns>
+        </member>
+        <member name="M:NeccWxApi.Servers.NewHistoryDataQueryServer.QueryPNum(NeccWxApi.Models.QPNumParModel,System.String)">
+            <summary>
+            位次查询
+            </summary>
+            <param name="qppm">查询参数头</param>
+            <param name="localProvince">生源地</param>
+            <returns></returns>
         </member>
         <member name="T:NeccWxApi.Servers.ProfessionServer">
             <summary>

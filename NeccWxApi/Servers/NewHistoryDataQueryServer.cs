@@ -73,15 +73,15 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        uName = (string)reader[0],
-                        uAddress = (string)reader[1],
-                        uType = (string)reader[2],
-                        uBatch = (string)reader[3],
-                        year = reader[4] == DBNull.Value ? -1 : (int)reader[4],
-                        uMin = reader[5] == DBNull.Value ? -1 : (int)reader[5],
-                        uAve = reader[6] == DBNull.Value ? decimal.MinusOne : (decimal)reader[6],
-                        uGap = reader[7] == DBNull.Value ? decimal.MinusOne : (decimal)reader[7],
-                        uNum = reader[8] == DBNull.Value ? -1 : (int)reader[8]
+                        uName = (string) reader[0],
+                        uAddress = (string) reader[1],
+                        uType = (string) reader[2],
+                        uBatch = (string) reader[3],
+                        year = reader[4] == DBNull.Value ? -1 : (int) reader[4],
+                        uMin = reader[5] == DBNull.Value ? -1 : (int) reader[5],
+                        uAve = reader[6] == DBNull.Value ? decimal.MinusOne : (decimal) reader[6],
+                        uGap = reader[7] == DBNull.Value ? decimal.MinusOne : (decimal) reader[7],
+                        uNum = reader[8] == DBNull.Value ? -1 : (int) reader[8]
                     });
                 }
 
@@ -147,14 +147,14 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        pName = (string)reader[0],
-                        uName = (string)reader[1],
-                        uAddress = (string)reader[2],
-                        pBatch = (string)reader[3],
-                        pMin = (int)reader[4],
-                        pAve = reader[5] == DBNull.Value ? decimal.MinusOne : (decimal)reader[5],
-                        pMinP = reader[6] == DBNull.Value ? -1 : (int)reader[6],
-                        pNum = reader[7] == DBNull.Value ? -1 : (int)reader[7]
+                        pName = (string) reader[0],
+                        uName = (string) reader[1],
+                        uAddress = (string) reader[2],
+                        pBatch = (string) reader[3],
+                        pMin = (int) reader[4],
+                        pAve = reader[5] == DBNull.Value ? decimal.MinusOne : (decimal) reader[5],
+                        pMinP = reader[6] == DBNull.Value ? -1 : (int) reader[6],
+                        pNum = reader[7] == DBNull.Value ? -1 : (int) reader[7]
                     });
                 }
 
@@ -220,13 +220,13 @@ namespace NeccWxApi.Servers
                 {
                     re.Add(new
                     {
-                        uName = (string)reader[0],
-                        uAddress = (string)reader[1],
-                        uBatch = (string)reader[2],
-                        uMin = reader[3] == DBNull.Value ? -1 : (int)reader[3],
-                        uAve = reader[4] == DBNull.Value ? decimal.MinusOne : (decimal)reader[4],
-                        uMinP = reader[5] == DBNull.Value ? -1 : (int)reader[5],
-                        uNum = reader[6] == DBNull.Value ? -1 : (int)reader[6]
+                        uName = (string) reader[0],
+                        uAddress = (string) reader[1],
+                        uBatch = (string) reader[2],
+                        uMin = reader[3] == DBNull.Value ? -1 : (int) reader[3],
+                        uAve = reader[4] == DBNull.Value ? decimal.MinusOne : (decimal) reader[4],
+                        uMinP = reader[5] == DBNull.Value ? -1 : (int) reader[5],
+                        uNum = reader[6] == DBNull.Value ? -1 : (int) reader[6]
                     });
                 }
 
@@ -288,7 +288,7 @@ namespace NeccWxApi.Servers
 
                 while (reader.Read())
                 {
-                    if ((string) reader[0] != "" && (string)reader[0] != "null")
+                    if ((string) reader[0] != "" && (string) reader[0] != "null")
                         re.Add(new
                         {
                             type = (string) reader[0]
@@ -313,6 +313,78 @@ namespace NeccWxApi.Servers
                 new {batch = "专科提前批"},
                 new {batch = "高职高专批"}
             };
+        }
+
+        /// <summary>
+        /// 位次查询
+        /// </summary>
+        /// <param name="qppm">查询参数头</param>
+        /// <param name="localProvince">生源地</param>
+        /// <returns></returns>
+        public static IEnumerable<object> QueryPNum(QPNumParModel qppm, string localProvince)
+        {
+            using (var con = new SqlConnection(Server.SqlConString))
+            {
+                if (qppm.classes == null || qppm.year == 0 || qppm.rPNum == 0)
+                {
+                    return new List<object>
+                    {
+                        new
+                        {
+                            code = "306",
+                            msg = "No necessary parameters"
+                        }
+                    };
+                }
+
+
+                string sqlUniLocal = " ", sqlBatch = " ";
+
+                if (qppm.uniLocal != null)
+                {
+                    sqlUniLocal = " and University.address = '" + qppm.uniLocal + "' ";
+                }
+                if (qppm.batch != null)
+                {
+                    sqlBatch = " and batch = '" + qppm.batch + "' ";
+                }
+
+                con.Open();
+                var re = new List<object>();
+
+                var sqlStr =
+                    "SELECT DISTINCT " + Server.Province[localProvince] +
+                    "Admit.uniName  , address , batch ,  uniMin , uniAve , uniMinP , uniNum " +
+                    "FROM " + Server.Province[localProvince] + "Admit JOIN University ON " +
+                    Server.Province[localProvince] +
+                    "Admit.uniName = University.uniName " +
+                    "WHERE province = '" + localProvince + "' " + sqlUniLocal + sqlBatch +
+                    " AND classes = '" + qppm.classes + "'" +
+                    "AND uniMinP >= " + qppm.lPNum + " AND uniMinP <= " + qppm.rPNum + " AND year = " + qppm.year +
+                    "ORDER BY uniMinP";
+
+                var sc = new SqlCommand(sqlStr, con);
+
+                sc.ExecuteNonQuery();
+
+                var reader = sc.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    re.Add(new
+                    {
+                        uName = (string) reader[0],
+                        uAddress = (string) reader[1],
+                        uBatch = (string) reader[2],
+                        uMin = reader[3] == DBNull.Value ? -1 : (int) reader[3],
+                        uAve = reader[4] == DBNull.Value ? decimal.MinusOne : (decimal) reader[4],
+                        uMinP = reader[5] == DBNull.Value ? -1 : (int) reader[5],
+                        uNum = reader[6] == DBNull.Value ? -1 : (int) reader[6]
+                    });
+                }
+
+                return re;
+            }
         }
     }
 }
